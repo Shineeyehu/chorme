@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页金句导出插件</title>
+    <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="input-section">
+            <textarea id="textInput" maxlength="200" placeholder="请输入或粘贴文字（最多200字）"></textarea>
+            <div class="char-count">0/200</div>
+        </div>
+
+        <div class="style-section">
+            <div class="style-group">
+                <label>主题风格</label>
+                <div class="theme-options">
+                    <button class="theme-btn active" data-theme="simple">简约白</button>
+                    <button class="theme-btn" data-theme="dark">暗夜黑</button>
+                    <button class="theme-btn" data-theme="warm">温暖棕</button>
+                </div>
+            </div>
+
+            <div class="style-group">
+                <label>字体选择</label>
+                <select id="fontFamily">
+                    <option value="SimSun">宋体</option>
+                    <option value="Microsoft YaHei">微软雅黑</option>
+                    <option value="KaiTi">楷体</option>
+                </select>
+            </div>
+
+            <div class="style-group">
+                <label>字体大小</label>
+                <input type="range" id="fontSize" min="16" max="36" value="24">
+                <span class="font-size-value">24px</span>
+            </div>
+
+            <div class="style-group">
+                <label>文本对齐</label>
+                <div class="align-options">
+                    <button class="align-btn active" data-align="left">居左</button>
+                    <button class="align-btn" data-align="center">居中</button>
+                </div>
+            </div>
+
+            <div class="style-group">
+                <label>内边距</label>
+                <input type="range" id="padding" min="20" max="60" value="40">
+                <span class="padding-value">40px</span>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <canvas id="previewCanvas"></canvas>
+        </div>
+
+        <div class="action-section">
+            <button id="downloadBtn" class="download-btn">下载图片</button>
+        </div>
+    </div>
+
+    <script src="scripts/popup.js"></script>
+</body>
+</html>
