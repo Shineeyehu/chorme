@@ -144,6 +144,45 @@ downloadBtn.addEventListener('click', () => {
     link.click();
 });
 
+// 总结按钮点击事件
+const summarizeBtn = document.getElementById('summarizeBtn');
+
+summarizeBtn.addEventListener('click', async () => {
+    const text = textInput.value;
+    if (!text) {
+        alert('请先输入或粘贴要总结的文字');
+        return;
+    }
+
+    try {
+        summarizeBtn.disabled = true;
+        summarizeBtn.textContent = '正在总结...';
+
+        const response = await fetch('http://localhost:3000/summarize', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text })
+        });
+
+        if (!response.ok) {
+            throw new Error('请求失败');
+        }
+
+        const data = await response.json();
+        textInput.value = data.summary;
+        charCount.textContent = `${data.summary.length}/200`;
+        generatePreview();
+    } catch (error) {
+        console.error('Error:', error);
+        alert('总结失败，请稍后重试');
+    } finally {
+        summarizeBtn.disabled = false;
+        summarizeBtn.textContent = '总结';
+    }
+});
+
 // 初始化预览
 textInput.value = '';
 charCount.textContent = '0/200';
